@@ -16,22 +16,20 @@ $(document).ready(function () {
     // maybe use .env for the key
     function cKey() {
         db.ref("/apiKey").on("value", function (snapshot) {
-            return snapshot.val()
+            console.log(snapshot.val())
+            senatorsPull(snapshot.val());
+            // return snapshot.val()
         })
     }
-    function senatorsPull() {
+    function senatorsPull(key) {
         $.ajax({
             type: "GET",
             url: "https://api.propublica.org/congress/v1/115/senate/members.json",
-            data: "data",
-            dataType: "dataType",
-            headers: { "X-API-Key": cKey() },
-            success: function (response) {
-                console.log(response)
-            }
+            dataType: "JSON",
+            headers: { "X-API-Key": key },
+        }).then(function (response) {
+            console.log(response);
         });
     }
+    cKey()
 })
-
-
-
