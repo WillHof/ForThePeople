@@ -10,12 +10,28 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database()
+
 $(document).ready(function () {
     // gets the api key
+    // maybe use .env for the key
     function cKey() {
         db.ref("/apiKey").on("value", function (snapshot) {
-            let cKey = snapshot.val()
+            return snapshot.val()
         })
     }
-
+    function senatorsPull() {
+        $.ajax({
+            type: "GET",
+            url: "https://api.propublica.org/congress/v1/115/senate/members.json",
+            data: "data",
+            dataType: "dataType",
+            headers: { "X-API-Key": cKey() },
+            success: function (response) {
+                console.log(response)
+            }
+        });
+    }
 })
+
+
+
