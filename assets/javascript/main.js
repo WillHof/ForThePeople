@@ -68,9 +68,9 @@ $(document).ready(function () {
         for (i = 0; i < obj.length; i++) {
             $("#populateSenators").append(
                 `
-                <div class="card" style = "width: 18rem;">
+                <div class="card">
         <div class="card-body">
-            <h5 class="card-title">${senators[i].first_name} ${senators[i].last_name} - ${senators[i].party}</h5>
+            <h5 class="card-title ${senators[i].state}">${senators[i].first_name} ${senators[i].last_name} - ${senators[i].party}</h5>
             <p class="card-text">State: ${senators[i].state}</p >
         </div >
                 <ul class="list-group list-group-flush">
@@ -79,8 +79,8 @@ $(document).ready(function () {
                     <li class="list-group-item">Next Election: ${senators[i].next_election}</li>
                 </ul>
                 <div class="card-body">
-                    <a href="${senators[i].url}" class="card - link">Website</a>
-                <a href ="${senators[i].contact_form}" class="card - link">Contact this Senator</a>
+                    <a href="${senators[i].url}" class="card-link">Website</a>
+                <a href ="${senators[i].contact_form}" class="card-link">Contact this Senator</a>
                 </div >
           </div >
                 `);
