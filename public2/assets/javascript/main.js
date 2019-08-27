@@ -1,10 +1,8 @@
-
 $(document).ready(function () {
     function compareSens(a, b) {
         // Use toUpperCase() to ignore character casing
         const stateA = a.state.toUpperCase();
         const stateB = b.state.toUpperCase();
-
         let comparison = 0;
         if (stateA > stateB) {
             comparison = 1;
