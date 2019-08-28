@@ -1,7 +1,5 @@
-const axios = require("axios");
 const db = require("../models")
-// const house = require("../models/houseMembers")
-// const senate = require("../models/senateMembers")
+
 module.exports = {
     createSenate: function (req, res) {
         db.Senate_Members.bulkCreate(this.mapToDB(req))
