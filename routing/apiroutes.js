@@ -1,4 +1,3 @@
-const axios = require("axios");
 const router = require("express").Router();
 require('dotenv').config();
 const api = require("../controllers/apicontroller")
@@ -8,15 +7,11 @@ router.route("/api/getSenators")
 router.route("/api/getUpcomingH")
     .get(api.GetHouseBills);
 router.route("/api/getUpcomingS")
-    .get(api.getSenateBills)
-router.route("/api/getStatements", function (req, res) {
-    axios({
-        method: 'get',
-        url: `https://api.propublica.org/congress/v1/statements/latest.json`,
-        headers: { 'X-API-Key': process.env.PROAPI },
-        dataType: "JSON",
-    })
-        .then(response => res.json(response.data.results)).catch(err => console.log(err))
-});
+    .get(api.GetSenateBills)
+router.route("/api/getStatements")
+    .get(api.GetStatements)
+router.route("/api/getBills")
+    .get(api.GetRecentUpdatedBills)
+    .post(api.SearchBills)
 module.exports = router
 

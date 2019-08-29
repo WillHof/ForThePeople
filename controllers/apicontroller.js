@@ -22,9 +22,10 @@ module.exports = {
             dataType: "JSON",
         })
             .then(response => res.json(response.data.results[0].bills))
+
             .catch(err => console.log(err))
     },
-    getSenateBills: function (req, res) {
+    GetSenateBills: function (req, res) {
         console.log("hits api")
         axios({
             method: 'get',
@@ -34,5 +35,35 @@ module.exports = {
         })
             .then(response => res.json(response.data.results[0].bills))
             .catch(err => res.status(503).json(err));
+    },
+    GetStatements: function (req, res) {
+        axios({
+            method: 'get',
+            url: `https://api.propublica.org/congress/v1/statements/latest.json`,
+            headers: { 'X-API-Key': process.env.PROAPI },
+            dataType: "JSON",
+        })
+            .then(response => res.json(response.data.results))
+            .catch(err => console.log(err))
+    },
+    GetRecentUpdatedBills: function (req, res) {
+        axios({
+            method: 'get',
+            url: `https://api.propublica.org/congress/v1/bills/search.json`,
+            headers: { 'X-API-Key': process.env.PROAPI },
+            dataType: "JSON",
+        })
+            .then(response => res.json(response.data.results[0].bills))
+            .catch(err => console.log(err))
+    },
+    SearchBills: function (req, res) {
+        axios({
+            method: 'get',
+            url: `https://api.propublica.org/congress/v1/bills/search.json?query=${req.body.search}`,
+            headers: { 'X-API-Key': process.env.PROAPI },
+            dataType: "JSON",
+        })
+            .then(response => res.json(response.data.results[0].bills))
+            .catch(err => console.log(err))
     }
 }
