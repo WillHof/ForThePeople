@@ -12,8 +12,6 @@ app.use(routes)
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
-
-
 const controller = require("./controllers/chamberCon")
 const db = require("./models")
 
@@ -36,7 +34,7 @@ function getCongressMembers() {
         .catch(err => console.log(err))
 }
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./client/public/index.html"));
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 db.sequelize.sync().then(function () {
     app.listen(PORT, function () {
