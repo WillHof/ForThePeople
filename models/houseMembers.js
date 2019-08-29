@@ -1,5 +1,9 @@
 module.exports = function (sequelize, DataTypes) {
     const HouseMembers = sequelize.define("House_Members", {
+        id: {
+            type: DataTypes.STRING,
+            primaryKey: true
+        },
         firstname: {
             type: DataTypes.STRING,
             trim: true,

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 require('dotenv').config();
 const api = require("../controllers/apicontroller")
+const database = require("../controllers/chamberCon")
 
 router.route("/api/getSenators")
     .get(api.GetSenators);
@@ -13,5 +14,7 @@ router.route("/api/getStatements")
 router.route("/api/getBills")
     .get(api.GetRecentUpdatedBills)
     .post(api.SearchBills)
+router.route("/api/getSenateMembers")
+    .get(database.getSenateMembers)
 module.exports = router
 

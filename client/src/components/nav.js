@@ -32,6 +32,9 @@ function Nav() {
                             Upcoming Bills
                         </Link>
                     </li>
+                    <li className="nav-item">
+                        <Link to="/Members" className={window.location.pathname === "/Bills" ? "nav-link active" : "nav-link"}>Congress Members</Link>
+                    </li>
                 </ul>
                 <ul className="navbar-nav">
                     <li className="nav-item dropdown">

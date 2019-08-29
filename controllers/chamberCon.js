@@ -11,6 +11,7 @@ module.exports = {
     mapToDB: function (arr) {
         let dbArr = []
         arr.map(person => dbArr.push({
+            "id": person.id,
             "firstname": person.first_name,
             "lastname": person.last_name,
             "birthdate": person.date_of_birth,
@@ -26,5 +27,9 @@ module.exports = {
             "title": person.title
         }))
         return dbArr
+    },
+    getSenateMembers: function (req, res) {
+        db.Senate_Members.findAll()
+            .then(data => res.json(data))
     }
 }
