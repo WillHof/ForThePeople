@@ -3,25 +3,47 @@ import React, { Component } from 'react'
 import Axios from 'axios';
 export class CongressMembers extends Component {
     componentDidMount() {
-        Axios.get("/api/getSenateMembers")
-            .then(res => {
-                this.setState({ congress: res.data })
-            })
+        this.getSenateMembers()
     }
     state = {
         chamber: "Senate",
         congress: []
+    }
+    getSenateMembers = () => Axios.get("/api/getSenateMembers")
+        .then(res => {
+            this.setState({ congress: res.data })
+        })
+
+    handleClick = (e) => {
+        e.preventDefault()
+        if (this.state.chamber === "Senate") {
+            this.setState({ chamber: "House" })
+            Axios.get("/api/getHouseMembers")
+                .then(res =>
+                    this.setState({ congress: res.data }))
+        }
+        else {
+            this.setState({ chamber: "Senate" })
+            this.getSenateMembers()
+        }
     }
     render() {
 
         return (
             <div>
                 <div className="container">
+                    <div className="btn-group">
+                        <button className="btn btn-secondary btn-lg dropdown-toggle" type="button" onClick={this.handleClick} >
+                            {this.state.chamber}
+                        </button>
+                        <div className="dropdown-menu">
+                            ...
+  </div>
+                    </div>
                     <h5 className="section-title h1">{this.state.chamber}</h5>
                     <div>
                         <div className="row">
                             {this.state.congress.map(dude => (
-
                                 <div key={dude.id} className="col-xs-12 col-sm-6 col-md-4">
                                     <div className="image-flip" ontouchstart="this.classList.toggle('hover');">
                                         <div className="mainflip">
@@ -63,7 +85,6 @@ export class CongressMembers extends Component {
                                         </div>
                                     </div>
                                 </div>
-
                             ))
                             }
                         </div>

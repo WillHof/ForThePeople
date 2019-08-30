@@ -31,5 +31,9 @@ module.exports = {
     getSenateMembers: function (req, res) {
         db.Senate_Members.findAll()
             .then(data => res.json(data))
+    },
+    getHouseMembers: function (req, res) {
+        db.House_Members.findAll()
+            .then(data => res.json(data))
     }
 }
