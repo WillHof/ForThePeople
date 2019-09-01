@@ -64,7 +64,11 @@ section .section-title {
     -o-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
-
+.border-radius-image{
+    border-radius:50%;
+    width:120px;
+    height:120px
+}
 .mainflip {
     -webkit-transition: 1s;
     -webkit-transform-style: preserve-3d;
@@ -133,7 +137,11 @@ section .section-title {
 .backside .card .card-title {
     color: #007b5e !important;
 }
-
+.nameText{
+    color: #007b5e;
+    font-size: 1.5rem;
+    text-align:center
+}
 .frontside .card .card-body img {
     width: 120px;
     height: 120px;

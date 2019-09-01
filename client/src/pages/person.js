@@ -41,8 +41,15 @@ export class Person extends Component {
     render() {
 
         return (
-            <div>
-                <PersonDetails info={this.state.member} />
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-4">
+
+                        <PersonDetails info={this.state.member} />
+
+                    </div>
+                </div>
+
             </div>
         )
     }
