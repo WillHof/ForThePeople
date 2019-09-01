@@ -46,6 +46,13 @@ module.exports = {
                 }
             }).then(data => res.json(data[0].dataValues))
         }
+        else {
+            db.House_Members.findAll({
+                where: {
+                    id
+                }
+            }).then(data => res.json(data[0].dataValues))
+        }
     },
     getMembersbyState: function (req, res) {
         let chamber = req.body.chamber
