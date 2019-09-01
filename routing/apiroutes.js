@@ -16,6 +16,7 @@ router.route("/api/getBills")
     .post(api.SearchBills)
 router.route("/api/getSenateMembers")
     .get(database.getSenateMembers)
+    .post(database.getMembersbyState)
 router.route("/api/getHouseMembers")
     .get(database.getHouseMembers)
 module.exports = router

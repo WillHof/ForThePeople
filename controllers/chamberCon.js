@@ -35,5 +35,23 @@ module.exports = {
     getHouseMembers: function (req, res) {
         db.House_Members.findAll()
             .then(data => res.json(data))
+    },
+    getMembersbyState: function (req, res) {
+        let chamber = req.body.chamber
+        let stateSelect = req.body.state
+        if (chamber === "Senate") {
+            db.Senate_Members.findAll({
+                where: {
+                    'state': stateSelect
+                }
+            }).then(data => res.json(data.map(element => element.dataValues)))
+        }
+        else {
+            db.House_Members.findAll({
+                where: {
+                    'state': stateSelect
+                }
+            }).then(data => res.json(data.map(element => element.dataValues)))
+        }
     }
 }
