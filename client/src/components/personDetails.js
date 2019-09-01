@@ -7,9 +7,6 @@ export class PersonDetails extends Component {
     }
     componentDidUpdate(prevProps) {
         if (this.props.info !== prevProps.info) {
-            console.log("it changed")
-            console.log(prevProps)
-            console.log(this.props)
             this.setState({
                 member: this.props.info
             })
