@@ -1,26 +1,28 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
-import { URLSearchParams } from 'url';
-
+import PersonDetails from "../components/personDetails"
 export class Person extends Component {
     state = {
-
+        id: 'something',
+        chamber: 'whatever'
     }
     setQueryParam = () => {
         var regexS1 = "[\\?&]name=([^&#]*)",
             regex = new RegExp(regexS1),
             id = regex.exec(document.URL)[1];
         var regexS2 = "[\\?&]chamber=([^&#]*)",
-            regex = new RegExp(regexS2),
-            chamber = regex.exec(document.URL)[1];
+            regex2 = new RegExp(regexS2),
+            chamber = regex2.exec(document.URL)[1];
 
         if (id === null || (id && typeof (id[1]) !== 'string' && id[1].length)) {
-            console.log("didn't work")
+            return ''
         } else {
             this.setState({
                 'id': id,
                 'chamber': chamber
-            });
+            },
+                this.getCongressMem(id, chamber)
+            )
         }
     }
     getCongressMem(id, chamber) {
@@ -33,13 +35,14 @@ export class Person extends Component {
     }
     componentDidMount() {
         this.setQueryParam();
+
     }
 
     render() {
 
         return (
             <div>
-
+                <PersonDetails info={this.state.member} />
             </div>
         )
     }

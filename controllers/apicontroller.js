@@ -1,18 +1,29 @@
 const axios = require("axios");
 
 module.exports = {
-    GetSenators: function (req, res) {
+    GetStatementsByMember: function (req, res) {
         axios({
             method: 'get',
-            url: "https://api.propublica.org/congress/v1/115/senate/members.json",
+            url: `https://api.propublica.org/congress/v1/members/${req.body.id}/statements/${req.body.chamber}.json`,
             headers: { 'X-API-Key': process.env.PROAPI },
             dataType: "JSON",
         })
             .then(response => {
-                console.log(response)
+                res.json(response.data)
+            })
+            .catch(err => res.status(503).json(err))
+    },
+    GetSenators: function (req, res) {
+        axios({
+            method: 'get',
+            url: "https://api.propublica.org/congress/v1/116/senate/members.json",
+            headers: { 'X-API-Key': process.env.PROAPI },
+            dataType: "JSON",
+        })
+            .then(response => {
                 res.json(response.data.results[0].members)
             })
-            .catch(err => console.log(err))
+            .catch(err => res.status(503).json(err))
     },
     GetHouseBills: function (req, res) {
         axios({
@@ -23,7 +34,7 @@ module.exports = {
         })
             .then(response => res.json(response.data.results[0].bills))
 
-            .catch(err => console.log(err))
+            .catch(err => res.status(503).json(err))
     },
     GetSenateBills: function (req, res) {
         console.log("hits api")
@@ -44,7 +55,7 @@ module.exports = {
             dataType: "JSON",
         })
             .then(response => res.json(response.data.results))
-            .catch(err => console.log(err))
+            .catch(err => res.status(503).json(err))
     },
     GetRecentUpdatedBills: function (req, res) {
         axios({
@@ -54,7 +65,7 @@ module.exports = {
             dataType: "JSON",
         })
             .then(response => res.json(response.data.results[0].bills))
-            .catch(err => console.log(err))
+            .catch(err => res.status(503).json(err))
     },
     SearchBills: function (req, res) {
         axios({
@@ -64,6 +75,6 @@ module.exports = {
             dataType: "JSON",
         })
             .then(response => res.json(response.data.results[0].bills))
-            .catch(err => console.log(err))
+            .catch(err => res.status(503).json(err))
     }
 }

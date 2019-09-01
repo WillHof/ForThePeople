@@ -18,7 +18,7 @@ const db = require("./models")
 function getCongressMembers() {
     axios({
         method: 'get',
-        url: "https://api.propublica.org/congress/v1/115/senate/members.json",
+        url: "https://api.propublica.org/congress/v1/116/senate/members.json",
         headers: { 'X-API-Key': process.env.PROAPI },
         dataType: "JSON",
     })

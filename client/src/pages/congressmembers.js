@@ -72,7 +72,7 @@ export class CongressMembers extends Component {
                                             <div className="frontside">
                                                 <div className="card">
                                                     <div className="card-body text-center">
-                                                        <p><img className=" img-fluid" src="" alt="congressmember" /></p>
+                                                        <p><img className=" img-fluid" src={`https://theunitedstates.io/images/congress/225x275/${dude.id}.jpg`} alt="congressmember" /></p>
                                                         <h4 className="card-title">{dude.firstname} {dude.lastname}, {dude.party}</h4>
                                                         <p className="card-text">{dude.state}, {dude.title}</p>
                                                         <a href="#" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a>
