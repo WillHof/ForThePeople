@@ -4,7 +4,7 @@ const api = require("../controllers/apicontroller")
 const database = require("../controllers/chamberCon")
 
 router.route("/api/getSenators")
-    .get(api.GetSenators);
+    .get(api.GetSenators)
 router.route("/api/getUpcomingH")
     .get(api.GetHouseBills);
 router.route("/api/getUpcomingS")
@@ -19,5 +19,7 @@ router.route("/api/getSenateMembers")
     .post(database.getMembersbyState)
 router.route("/api/getHouseMembers")
     .get(database.getHouseMembers)
+router.route("/api/getOne")
+    .post(database.getOneMember)
 module.exports = router
 

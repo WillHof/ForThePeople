@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 //import PersonCard from "../components/PersonCard"
-import UsState from "../components/usState.js"
+import UsState from "../components/usState.js";
 import Axios from 'axios';
 export class CongressMembers extends Component {
     componentDidMount() {
@@ -82,7 +83,9 @@ export class CongressMembers extends Component {
                                                 <div className="card">
                                                     <div className="card-body text-center mt-4">
                                                         <h4 className="card-title">{dude.firstname} {dude.lastname}, {dude.party}</h4>
-                                                        <p className="card-text">I am a Senator and its pretty cool. I need to put stuff here to fill it out.</p>
+                                                        <Link to={`/Person?name=${dude.id}&chamber=${this.state.chamber}`} className={window.location.pathname === "/Members" ? "nav-link active" : "nav-link"}>
+                                                            <p className="card-text" href="">Click here for detailed information on the congressperson.</p>
+                                                        </Link>
                                                         <ul className="list-inline">
                                                             <li className="list-inline-item">
                                                                 <a className="social-icon text-xs-center" href={`http://www.facebook.com/${dude.facebook}`}>

@@ -14,10 +14,8 @@ export class UsState extends Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        console.log("hey");
     }
     render() {
-        const usState = this.props.currState
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
