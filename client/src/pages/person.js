@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
 import PersonDetails from "../components/personDetails"
+import PersonNav from "../components/PersonNav"
 export class Person extends Component {
     state = {
         id: 'something',
-        chamber: 'whatever'
+        chamber: 'whatever',
+        member: {}
     }
     setQueryParam = () => {
         var regexS1 = "[\\?&]name=([^&#]*)",
@@ -43,13 +45,15 @@ export class Person extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-md-4">
-
+                    <div className="col-xs-12 col-sm-6 col-md-4">
                         <PersonDetails info={this.state.member} />
-
                     </div>
-                </div>
+                    <div className="col-md-8 col-sm-12">
+                        <h3 className="nameText heading-style">{this.state.member.firstname} {this.state.member.lastname}</h3>
+                        <PersonNav />
+                    </div>
 
+                </div>
             </div>
         )
     }

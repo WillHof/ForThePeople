@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 export class PersonDetails extends Component {
     state = {
-        fuckingwork: "what"
+
     }
     componentDidUpdate(prevProps) {
         if (this.props.info !== prevProps.info) {
@@ -20,7 +20,8 @@ export class PersonDetails extends Component {
                     <div className="card frontside mainflip">
                         <div className="card-body text-center">
                             <p><img className="img-fluid border-radius-image" src={`https://theunitedstates.io/images/congress/225x275/${this.state.member.id}.jpg`} alt="congressmember" /></p>
-                            <h4 className="card-title nameText">{this.state.member.firstname} {this.state.member.lastname}, {this.state.member.party}</h4>
+                            <h4 className="card-title nameText"> {this.state.member.title}, {this.state.member.party}</h4>
+                            <h5 className="card-title">Social Media:</h5>
                             <ul className="list-inline">
                                 <li className="list-inline-item">
                                     <a className="social-icon text-xs-center" href={`http://www.facebook.com/${this.state.member.facebook}`}>

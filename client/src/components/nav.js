@@ -21,7 +21,7 @@ function Nav() {
                             to="/Papers"
                             className={window.location.pathname === "/Papers" ? "nav-link active" : "nav-link"}
                         >
-                            Papers
+                            Congressional Statements
                         </Link>
                     </li>
                     <li className="nav-item">

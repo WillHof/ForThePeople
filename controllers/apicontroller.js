@@ -47,7 +47,7 @@ module.exports = {
             .then(response => res.json(response.data.results[0].bills))
             .catch(err => res.status(503).json(err));
     },
-    GetStatements: function (req, res) {
+    GetRecentStatements: function (req, res) {
         axios({
             method: 'get',
             url: `https://api.propublica.org/congress/v1/statements/latest.json`,
