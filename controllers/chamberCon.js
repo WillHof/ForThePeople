@@ -1,13 +1,14 @@
 const db = require("../models")
 
 module.exports = {
+
     createSenate: function (req, res) {
         db.Senate_Members.bulkCreate(this.mapToDB(req))
-
     },
     createHouse: function (req, res) {
         db.House_Members.bulkCreate(this.mapToDB(req))
     },
+    //handles api data
     mapToDB: function (arr) {
         let dbArr = []
         arr.map(person => dbArr.push({
