@@ -7,17 +7,17 @@ const routes = require("./routing/apiroutes.js");
 const path = require("path");
 const passport = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
-
+const controller = require("./controllers/chamberCon")
+const db = require("./models")
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routes);
 app.use(passport.initialize());
 app.use(passport.session());
+
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
-const controller = require("./controllers/chamberCon")
-const db = require("./models")
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
@@ -43,6 +43,7 @@ passport.use(new LocalStrategy(
         });
     }
 ));
+
 passport.serializeUser(function (user, cb) {
     console.log("serialize user")
     cb(null, user.id);
@@ -54,11 +55,14 @@ passport.deserializeUser(function (id, cb) {
         cb(err, user);
     });
 });
+
 app.get('/success', (req, res) => res.send(req.query.username));
+
 app.post('/auth', passport.authenticate('local', { failureRedirect: "/error" }),
     function (req, res) {
         res.redirect('/success?username=' + req.query.username);
     });
+
 function getCongressMembers() {
     axios({
         method: 'get',
