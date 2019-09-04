@@ -7,8 +7,7 @@ const passport = require('../passport')
 
 // this route is just used to get the user basic info
 router.get('/user', (req, res, next) => {
-    console.log('===== user!!======')
-    console.log(req.user)
+
     if (req.user) {
         return res.json({ user: req.user })
     } else {
@@ -19,17 +18,13 @@ router.get('/user', (req, res, next) => {
 router.post(
     '/login',
     function (req, res, next) {
-        console.log(req.body)
-        console.log('================')
         next()
     },
     passport.authenticate('local'),
     (req, res) => {
-        console.log('POST to /login')
         const user = JSON.parse(JSON.stringify(req.user)) // hack
         const cleanUser = Object.assign({}, user)
         if (cleanUser) {
-            console.log(`Deleting ${cleanUser.password}`)
             delete cleanUser.password
         }
         //res.redirect('/')

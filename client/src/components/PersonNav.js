@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Bills from "../pages/Bills"
+import Bills from "../pages/IntroducedBills"
 import Statements from "../pages/Papers"
 
 export class PersonNav extends Component {
     state = {
         renderComponent: "Home",
-        CongId: "   "
+        CongId: ""
     }
     componentDidMount() {
     }
@@ -31,23 +31,28 @@ export class PersonNav extends Component {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="personNav"> */}
-                <ul className="nav nav-pills mr-auto nav-fill">
+                <ul className="nav nav-pills mr-auto nav-fill" id="personNav">
                     <li className="nav-item">
-                        <button className="nav-link active">Home</button>
+                        <button className="nav-link" name="Home" onClick={this.handleClick}>Home</button>
                     </li>
                     <li className="nav-item">
                         <button className="nav-link" name="Statements" onClick={this.handleClick}>Statements</button>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link" name="Bills" onClick={this.handleClick}>Upcoming Bills</button>
+                        <button className="nav-link" name="introduced" onClick={this.handleClick}>Introduced Bills</button>
+                    </li>
+                    <li className="nav-item">
+                        <button className="nav-link" name="updated" onClick={this.handleClick}>Co-Sponsored Bills</button>
                     </li>
                 </ul>
                 {
                     this.state.renderComponent === "Statements" ?
                         <Statements id={this.state.CongId} /> :
-                        this.state.renderComponent === "Bills" ?
-                            <Bills id={this.state.CongId} /> :
-                            <div></div>
+                        this.state.renderComponent === "introduced" ?
+                            <Bills id={this.state.CongId} which={this.state.renderComponent} /> :
+                            this.state.renderComponent === "updated" ?
+                                <Bills id={this.state.CongId} which={this.state.renderComponent} /> :
+                                <div>some info</div>
                 }
             </div>
         )

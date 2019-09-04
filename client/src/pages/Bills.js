@@ -65,7 +65,7 @@ export class Bills extends Component {
                                         <div className="card-body">
                                             <h5 className="card-title">{bill.bill_id}</h5>
                                             <p className="card-text">Scheduled on{bill.legislative_day}</p>
-                                            <a href={bill.url} className="btn btn-primary">Go to Statement</a>
+                                            <a href={bill.url} className="btn btn-primary">Go to Bill</a>
                                         </div>
                                     </div>
                                 )

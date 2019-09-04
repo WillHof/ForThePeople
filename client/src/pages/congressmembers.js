@@ -55,12 +55,19 @@ export class CongressMembers extends Component {
         return (
             <div>
                 <div className="container">
-                    <div className="btn-group">
-                        <button className="btn btn-secondary btn-lg dropdown-toggle" type="button" onClick={this.handleClick} >
-                            Toggle Chamber
+                    <div className="row">
+                        <div className="btn-group btn-padding">
+                            <button className="btn btn-secondary btn-lg" type="button" onClick={this.handleClick} >
+                                Toggle Chamber
                         </button>
+
+                        </div>
+
                     </div>
-                    <UsState currState={this.state.usState} onStateChange={this.onStateChange} />
+                    <div className="row">
+                        <h5 className="nameText btn-padding">Select A State:</h5>
+                        <UsState currState={this.state.usState} onStateChange={this.onStateChange} />
+                    </div>
 
                     <h5 className="section-title h1">{this.state.chamber}</h5>
                     <div>
@@ -114,7 +121,7 @@ export class CongressMembers extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
