@@ -6,10 +6,14 @@ import { List, BillC } from "../components/billContainer"
 export class Bills extends Component {
     state = {
         "chamber": "Senate",
-        "bills": []
+        "bills": [],
+        "CongId": "",
+        "billType": "introduced"
     }
     componentDidMount() {
-        axios.get("/api/getUpcomingS").then(res => this.setState({ "bills": res.data }))
+        this.props.id ? this.renderPersonBills() :
+            axios.get("/api/getUpcomingS").then(res => this.setState({ "bills": res.data }))
+
     }
     handleClick = (e) => {
         e.preventDefault();
@@ -22,7 +26,19 @@ export class Bills extends Component {
             axios.get("/api/getUpcomingH").then(res => this.setState({ "bills": res.data }))
         }
     }
-
+    renderPersonBills = () => {
+        axios.post("/api/getIntroducedBills", {
+            'memberId': this.props.id,
+            'type': this.state.billType
+        })
+            .then(res => this.setState({ "bills": res.data }))
+    }
+    //component recieves props when called from individual congressperson page
+    componentDidUpdate(prevProps) {
+        if (this.props.CongId !== prevProps.CongId) {
+            this.renderPersonBills()
+        }
+    }
     render() {
         const dataLength = this.state.bills.length
         return (

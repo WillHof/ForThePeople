@@ -37,7 +37,6 @@ module.exports = {
             .catch(err => res.status(503).json(err))
     },
     GetSenateBills: function (req, res) {
-        console.log("hits api")
         axios({
             method: 'get',
             url: `https://api.propublica.org/congress/v1/bills/upcoming/senate.json`,
@@ -72,6 +71,17 @@ module.exports = {
         axios({
             method: 'get',
             url: `https://api.propublica.org/congress/v1/bills/search.json`,
+            headers: { 'X-API-Key': process.env.PROAPI },
+            dataType: "JSON",
+        })
+            .then(response => res.json(response.data.results[0].bills))
+            .catch(err => res.status(503).json(err))
+    },
+    GetPersonIntroducedBills: function (req, res) {
+        console.log(req.body.memberId + req.body.type)
+        axios({
+            method: 'get',
+            url: `https://api.propublica.org/congress/v1/members/${req.body.memberId}/bills/${req.body.type}.json`,
             headers: { 'X-API-Key': process.env.PROAPI },
             dataType: "JSON",
         })

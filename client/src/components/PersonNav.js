@@ -8,7 +8,6 @@ export class PersonNav extends Component {
         CongId: "   "
     }
     componentDidMount() {
-
     }
     componentDidUpdate(prevProps) {
         if (this.props.id !== prevProps.id) {
@@ -47,13 +46,10 @@ export class PersonNav extends Component {
                     this.state.renderComponent === "Statements" ?
                         <Statements id={this.state.CongId} /> :
                         this.state.renderComponent === "Bills" ?
-                            <Bills id={this.stateCongId} /> :
+                            <Bills id={this.state.CongId} /> :
                             <div></div>
                 }
-
             </div>
-            //     </nav >
-            // </div >
         )
     }
 }
