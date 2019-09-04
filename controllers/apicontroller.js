@@ -50,7 +50,18 @@ module.exports = {
     GetRecentStatements: function (req, res) {
         axios({
             method: 'get',
-            url: `https://api.propublica.org/congress/v1/statements/latest.json`,
+            url: `https://api.propublica.org/congress/v1/statements/committees/latest.json`,
+            headers: { 'X-API-Key': process.env.PROAPI },
+            dataType: "JSON",
+        })
+            .then(response => res.json(response.data.results))
+            .catch(err => res.status(503).json(err))
+    },
+    searchStatements: function (req, res) {
+        console.log(req.body.search)
+        axios({
+            method: 'get',
+            url: `https://api.propublica.org/congress/v1/statements/committees/search.json?query=${req.body.search}`,
             headers: { 'X-API-Key': process.env.PROAPI },
             dataType: "JSON",
         })

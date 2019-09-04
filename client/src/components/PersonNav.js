@@ -1,9 +1,27 @@
 import React, { Component } from 'react'
-import { Link } from "react-router-dom";
+import Bills from "../pages/Bills"
+import Statements from "../pages/Papers"
 
 export class PersonNav extends Component {
     state = {
+        renderComponent: "Home",
+        CongId: "   "
+    }
+    componentDidMount() {
 
+    }
+    componentDidUpdate(prevProps) {
+        if (this.props.id !== prevProps.id) {
+            this.setState({
+                "CongId": this.props.id
+            })
+        }
+    }
+    handleClick = (e) => {
+        const name = e.target.name;
+        this.setState({
+            "renderComponent": name
+        })
     }
     render() {
         return (
@@ -16,18 +34,23 @@ export class PersonNav extends Component {
                     <div className="collapse navbar-collapse" id="personNav"> */}
                 <ul className="nav nav-pills mr-auto nav-fill">
                     <li className="nav-item">
-                        <span className="nav-link active">Home</span>
+                        <button className="nav-link active">Home</button>
                     </li>
                     <li className="nav-item">
-                        <span className="nav-link">Papers</span>
+                        <button className="nav-link" name="Statements" onClick={this.handleClick}>Statements</button>
                     </li>
                     <li className="nav-item">
-                        <span className="nav-link">Upcoming Bills</span>
-                    </li>
-                    <li className="nav-item">
-                        <span className="nav-link">Statements</span>
+                        <button className="nav-link" name="Bills" onClick={this.handleClick}>Upcoming Bills</button>
                     </li>
                 </ul>
+                {
+                    this.state.renderComponent === "Statements" ?
+                        <Statements id={this.state.CongId} /> :
+                        this.state.renderComponent === "Bills" ?
+                            <Bills id={this.stateCongId} /> :
+                            <div></div>
+                }
+
             </div>
             //     </nav >
             // </div >

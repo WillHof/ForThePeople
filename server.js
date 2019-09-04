@@ -5,8 +5,7 @@ const axios = require("axios");
 require('dotenv').config();
 const routes = require("./routing/apiroutes.js");
 const path = require("path");
-const passport = require("passport");
-const LocalStrategy = require('passport-local').Strategy;
+const passport = require("./passport");
 const controller = require("./controllers/chamberCon")
 const db = require("./models")
 app.use(express.urlencoded({ extended: true }));
@@ -14,54 +13,30 @@ app.use(express.json());
 app.use(routes);
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use('/auth', require("./routing/auth"))
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
-passport.use(new LocalStrategy(
-    function (username, password, done) {
-        db.userinfo.findOne({
-            where: {
-                username: username
-            }
-        }).then(function (user) {
-            //,
-            // function (err, user) {
-            //     console.log(user)
-            //     if(err){
-            //         return done(err)
-            //     }
-            if (!user) {
-                return done(null, false);
-            }
 
-            if (user.password !== password) {
-                return done(null, false);
-            }
-            return done(null, user);
-        });
-    }
-));
+// passport.serializeUser(function (user, cb) {
+//     console.log("serialize user")
+//     cb(null, user.id);
+// });
 
-passport.serializeUser(function (user, cb) {
-    console.log("serialize user")
-    cb(null, user.id);
-});
+// passport.deserializeUser(function (id, cb) {
+//     User.findById(id, function (err, user) {
+//         console.log("deserialize")
+//         cb(err, user);
+//     });
+// });
 
-passport.deserializeUser(function (id, cb) {
-    User.findById(id, function (err, user) {
-        console.log("deserialize")
-        cb(err, user);
-    });
-});
+// app.get('/success', (req, res) => res.send(req.query.username));
 
-app.get('/success', (req, res) => res.send(req.query.username));
-
-app.post('/auth', passport.authenticate('local', { failureRedirect: "/error" }),
-    function (req, res) {
-        res.redirect('/success?username=' + req.query.username);
-    });
+// app.post('/auth', passport.authenticate('local', { failureRedirect: "/error" }),
+//     function (req, res) {
+//         res.redirect('/success?username=' + req.query.username);
+//     });
 
 function getCongressMembers() {
     axios({
