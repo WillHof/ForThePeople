@@ -4,7 +4,7 @@ export class Home extends Component {
     render() {
         return (
             <div>
-                <img src={bgImage} className="img-fluid" alt="Responsive"></img>
+                <img src={bgImage} className="background-image img-fluid" alt="Responsive"></img>
             </div>
         )
     }

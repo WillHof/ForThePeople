@@ -45,7 +45,7 @@ export class Papers extends Component {
                     <div className="col-md-12">
                         {
                             this.state.statements.map(element =>
-                                <div className="card">
+                                <div className="card" key={element.url}>
                                     <h5 className="card-header nameText">{element.statement_type}</h5>
                                     <div className="card-body">
                                         <h5 className="card-title">{element.title}</h5>

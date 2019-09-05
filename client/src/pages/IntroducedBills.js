@@ -25,31 +25,33 @@ export class IntroducedBills extends Component {
     render() {
         const dataLength = this.state.bills.length
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-12">
-                        <h3 className="nameText heading-style">{this.state.chamber} Bills</h3>
+            <div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <h3 className="nameText heading-style">Bills Introduced by {this.props.firstName} {this.props.lastName}</h3>
+                        </div>
                     </div>
-                </div>
-                <List>
-                    <BillC>
-                        {
-                            dataLength ? (
-                                this.state.bills.map(bill =>
-                                    <div className="card" key={bill.bill_id}>
-                                        <h5 className="card-header nameText">{bill.short_title}</h5>
-                                        <div className="card-body">
-                                            <h5 className="card-title">{bill.title}</h5>
-                                            <p className="card-text">Introduced on {bill.introduced_date}</p>
-                                            <a href={bill.govtrack_url} className="btn btn-primary">Go to Bill</a>
+                    <List>
+                        <BillC>
+                            {
+                                dataLength ? (
+                                    this.state.bills.map(bill =>
+                                        <div className="card" key={bill.bill_id}>
+                                            <h5 className="card-header nameText">{bill.short_title}</h5>
+                                            <div className="card-body">
+                                                <h5 className="card-title">{bill.title}</h5>
+                                                <p className="card-text">Introduced on {bill.introduced_date}</p>
+                                                <a href={bill.govtrack_url} className="btn btn-primary">Go to Bill</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                )
-                            ) : <h3 className="nameText heading-style">This congressperson has not introduced any bills.</h3>
-                        }
-                    </BillC>
-                </List >
-            </div >
+                                    )
+                                ) : <h3 className="nameText heading-style">This congressperson has not introduced any bills.</h3>
+                            }
+                        </BillC>
+                    </List >
+                </div >
+            </div>
         )
 
     }

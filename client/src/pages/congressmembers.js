@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 //import PersonCard from "../components/PersonCard"
 import UsState from "../components/usState.js";
 import Axios from 'axios';
+
 export class CongressMembers extends Component {
     componentDidMount() {
         this.getSenateMembers()
@@ -56,20 +57,33 @@ export class CongressMembers extends Component {
             <div>
                 <div className="container">
                     <div className="row">
-                        <div className="btn-group btn-padding">
-                            <button className="btn btn-secondary btn-lg" type="button" onClick={this.handleClick} >
-                                Toggle Chamber
-                        </button>
+                        <div className="col-md-4">
+
+                            <div className="row">
+                                <div className="col">
+                                    <div className="btn-group btn-padding">
+                                        <button className="btn btn-secondary btn-md" type="button" onClick={this.handleClick} >
+                                            Toggle Chamber
+                                     </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col">
+                                    <span>State:</span> <UsState currState={this.state.usState} onStateChange={this.onStateChange} />
+                                </div>
+                            </div>
 
                         </div>
+                        <div className="col-md-4">
+                            <h3 className="section-title text-center vertical-align">{this.state.chamber}</h3>
+                        </div>
+                        <div className="col-md-4">
 
-                    </div>
-                    <div className="row">
-                        <h5 className="nameText btn-padding">Select A State:</h5>
-                        <UsState currState={this.state.usState} onStateChange={this.onStateChange} />
+
+                        </div>
                     </div>
 
-                    <h5 className="section-title h1">{this.state.chamber}</h5>
                     <div>
                         <div className="row">
                             {this.state.congress.map(dude => (

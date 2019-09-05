@@ -19,25 +19,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-// passport.serializeUser(function (user, cb) {
-//     console.log("serialize user")
-//     cb(null, user.id);
-// });
-
-// passport.deserializeUser(function (id, cb) {
-//     User.findById(id, function (err, user) {
-//         console.log("deserialize")
-//         cb(err, user);
-//     });
-// });
-
-// app.get('/success', (req, res) => res.send(req.query.username));
-
-// app.post('/auth', passport.authenticate('local', { failureRedirect: "/error" }),
-//     function (req, res) {
-//         res.redirect('/success?username=' + req.query.username);
-//     });
-
 function getCongressMembers() {
     axios({
         method: 'get',

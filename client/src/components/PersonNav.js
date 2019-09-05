@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Bills from "../pages/IntroducedBills"
 import Statements from "../pages/Papers"
+import Upcoming from "../pages/Bills"
 
 export class PersonNav extends Component {
     state = {
@@ -49,10 +50,10 @@ export class PersonNav extends Component {
                     this.state.renderComponent === "Statements" ?
                         <Statements id={this.state.CongId} /> :
                         this.state.renderComponent === "introduced" ?
-                            <Bills id={this.state.CongId} which={this.state.renderComponent} /> :
+                            <Bills id={this.state.CongId} which={this.state.renderComponent} firstName={this.props.firstName} lastName={this.props.lastName} /> :
                             this.state.renderComponent === "updated" ?
                                 <Bills id={this.state.CongId} which={this.state.renderComponent} /> :
-                                <div>some info</div>
+                                <Upcoming />
                 }
             </div>
         )
