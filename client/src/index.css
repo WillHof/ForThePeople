@@ -10,6 +10,23 @@ body {
     background-image:url("./assets/images/white_house.jpg");
     background-size:100%
 }
+.lucent{
+    background: rgba(255, 255, 255, 0.9);
+    
+}
+#wrapper {
+    width: 60vw; /*optional*/
+         height: 40vh;
+         margin: 20vh auto;
+ 
+   }
+.font-script{
+    font-family: 'Beth Ellen', cursive;
+    text-align: center
+}
+.text-center{
+    text-align: center
+}
 .container{
     background-color: #fff
 }
