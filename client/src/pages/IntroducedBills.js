@@ -26,7 +26,6 @@ export class IntroducedBills extends Component {
         }
     }
     render() {
-        const dataLength = this.state.bills.length
         return (
             <div>
                 <div className="container border">
