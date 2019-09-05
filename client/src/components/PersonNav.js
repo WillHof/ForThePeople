@@ -52,7 +52,7 @@ export class PersonNav extends Component {
                         this.state.renderComponent === "introduced" ?
                             <Bills id={this.state.CongId} which={this.state.renderComponent} firstName={this.props.firstName} lastName={this.props.lastName} /> :
                             this.state.renderComponent === "updated" ?
-                                <Bills id={this.state.CongId} which={this.state.renderComponent} /> :
+                                <Bills id={this.state.CongId} which={this.state.renderComponent} firstName={this.props.firstName} lastName={this.props.lastName} /> :
                                 <Upcoming />
                 }
             </div>

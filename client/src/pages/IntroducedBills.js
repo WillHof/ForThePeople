@@ -4,7 +4,7 @@ import { List, BillC } from "../components/billContainer"
 export class IntroducedBills extends Component {
     state = {
         billType: "introduced",
-        bills: ""
+        bills: []
     }
     componentDidMount() {
         axios.post("/api/getIntroducedBills", {
@@ -29,13 +29,24 @@ export class IntroducedBills extends Component {
                 <div className="container border">
                     <div className="row">
                         <div className="col-md-12">
-                            <h3 className="nameText heading-style">Bills Introduced by {this.props.firstName} {this.props.lastName}</h3>
+                            <h3 className="nameText heading-style">Bills {this.props.which} by {this.props.firstName} {this.props.lastName}</h3>
                         </div>
                     </div>
                     <List>
                         <BillC>
                             {
-                                dataLength ? (
+                                this.props.which === "introduced" ? (
+                                    this.state.bills.map(bill =>
+                                        <div className="card" key={bill.bill_id}>
+                                            <h5 className="card-header nameText">{bill.short_title}</h5>
+                                            <div className="card-body">
+                                                <h5 className="card-title">{bill.title}</h5>
+                                                <p className="card-text">Introduced on {bill.introduced_date}</p>
+                                                <a href={bill.govtrack_url} className="btn btn-primary">Go to Bill</a>
+                                            </div>
+                                        </div>
+                                    )
+                                ) : this.props.which === "updated" ? (
                                     this.state.bills.map(bill =>
                                         <div className="card" key={bill.bill_id}>
                                             <h5 className="card-header nameText">{bill.short_title}</h5>
