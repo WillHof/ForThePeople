@@ -26,7 +26,7 @@ export class IntroducedBills extends Component {
         const dataLength = this.state.bills.length
         return (
             <div>
-                <div className="container">
+                <div className="container border">
                     <div className="row">
                         <div className="col-md-12">
                             <h3 className="nameText heading-style">Bills Introduced by {this.props.firstName} {this.props.lastName}</h3>
