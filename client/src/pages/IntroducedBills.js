@@ -14,12 +14,15 @@ export class IntroducedBills extends Component {
             .then(res => this.setState({ "bills": res.data }))
     }
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.billType !== this.state.billType) {
+        if (this.props.which !== this.state.billType) {
             axios.post("/api/getIntroducedBills", {
                 'memberId': this.props.id,
                 'type': this.props.which
             })
-                .then(res => this.setState({ "bills": res.data }))
+                .then(res => this.setState({
+                    "bills": res.data,
+                    "billType": this.props.which
+                }))
         }
     }
     render() {
