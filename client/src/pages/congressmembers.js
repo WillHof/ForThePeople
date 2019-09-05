@@ -110,17 +110,17 @@ export class CongressMembers extends Component {
                                                         <ul className="list-inline">
                                                             <li className="list-inline-item">
                                                                 <a className="social-icon text-xs-center" href={`http://www.facebook.com/${dude.facebook}`}>
-                                                                    <i className="fa fa-facebook"></i>
+                                                                    <i className="fa fa-facebook fa-2x"></i>
                                                                 </a>
                                                             </li>
                                                             <li className="list-inline-item">
                                                                 <a className="social-icon text-xs-center" href={`http://www.twitter.com/${dude.twitter}`}>
-                                                                    <i className="fa fa-twitter"></i>
+                                                                    <i className="fa fa-twitter fa-2x"></i>
                                                                 </a>
                                                             </li>
                                                             <li className="list-inline-item">
                                                                 <a className="social-icon text-xs-center" href={dude.website}>
-                                                                    <i className="fa fa-google"></i>
+                                                                    <i className="fa fa-google fa-2x"></i>
                                                                 </a>
                                                             </li>
                                                         </ul>

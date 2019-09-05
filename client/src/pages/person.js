@@ -49,7 +49,7 @@ export class Person extends Component {
                     </div>
                     <div className="col-md-8 col-sm-12">
                         <h3 className="nameText heading-style">{this.state.member.firstname} {this.state.member.lastname}</h3>
-                        <PersonNav id={this.state.id} firstName={this.state.member.firstname} lastName={this.state.member.lastname} />
+                        <PersonNav id={this.state.id} contact={this.state.member.contact} firstName={this.state.member.firstname} lastName={this.state.member.lastname} />
                     </div>
 
                 </div>

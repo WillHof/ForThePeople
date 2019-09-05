@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import { List, BillC } from "../components/billContainer"
-
+//include ability to search for bills. 
 
 export class Bills extends Component {
     state = {
@@ -9,7 +9,8 @@ export class Bills extends Component {
         "bills": [],
         "CongId": "",
         "billType": "introduced",
-        "search": ""
+        "search": "",
+        "renderComponent": "Bills"
     }
     componentDidMount() {
         this.props.id ? this.renderPersonBills() :
@@ -55,6 +56,7 @@ export class Bills extends Component {
         const dataLength = this.state.bills.length
         return (
 
+
             <div className="container border">
                 <div className="row">
                     <div className="col-md-12">
@@ -66,7 +68,7 @@ export class Bills extends Component {
                         Toggle Chamber
                         </button>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     <div className="col-md-12">
                         <div className="input-group mb-3">
                             <span className="nameText">Search all bills by category:</span>
@@ -76,7 +78,7 @@ export class Bills extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <List>
                     <BillC>
                         {
@@ -91,7 +93,7 @@ export class Bills extends Component {
                                         </div>
                                     </div>
                                 )
-                            ) : <h3 className="nameText heading-style">There are no upcoming bills for the {this.state.chamber} in the next week. Try searching for a bill category to show something here.</h3>
+                            ) : <h3 className="nameText heading-style">There are no upcoming bills for the {this.state.chamber} in the next two weeks.</h3>
                         }
                     </BillC>
                 </List >

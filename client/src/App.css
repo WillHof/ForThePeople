@@ -8,7 +8,7 @@
   pointer-events: none;
 }
 #overallMain{
-  background-image: "./assets/images/white_house.jpg"
+ min-height:100vh
 }
 .App-header {
   background-color: #282c34;
