@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../models/userinfo')
+const db = require('../models/')
 const passport = require('../passport')
 
 
@@ -45,22 +45,21 @@ router.post('/logout', (req, res) => {
 router.post('/signup', (req, res) => {
     const { username, password } = req.body
     // ADD VALIDATION
-    User.findOne(
+    db.userinfo.findOne(
         { where: { 'username': username } })
         .then(userMatch => {
             if (userMatch) {
-                return res.json({
+                return res.status(304).json({
                     error: `Sorry, already a user with the username: ${username}`
                 })
             }
-            const newUser = new User({
-                'username': username,
-                'password': password
-            })
-            newUser.save((err, savedUser) => {
-                if (err) return res.json(err)
-                return res.json(savedUser)
-            })
+            else {
+                db.userinfo.create({
+                    username,
+                    password
+                }).then(savedUser => res.json(savedUser))
+                    .catch(err => res.status(503).json(err))
+            }
         })
 })
 

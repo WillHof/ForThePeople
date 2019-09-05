@@ -13,13 +13,34 @@ class Nav extends React.Component {
             [name]: value
         })
     }
+    signUp = (e) => {
+        e.preventDefault()
+        axios.post("/auth/signup", {
+            username: this.state.username,
+            password: this.state.password
+        }).then(response => console.log(response))
+            .catch(err => alert(err))
+    }
     submitForm = (e) => {
         e.preventDefault()
         axios.post("/auth/login", {
             username: this.state.username,
             password: this.state.password
-        }).then(response => sessionStorage.setItem('id', response.data.user.id))
+        }).then(response => {
+            sessionStorage.setItem('id', response.data.user.id)
+            alert("You have been logged in")
+        })
             .catch(err => alert("Username or password incorrect"))
+    }
+    logOut = (e) => {
+        e.preventDefault()
+        axios.post("/auth/logout", {
+            user: sessionStorage.getItem('id')
+        }).then(response => {
+            sessionStorage.removeItem('id');
+            alert("You have been logged out")
+        })
+            .catch(err => console.log(err))
     }
     render() {
         return (
@@ -65,9 +86,9 @@ class Nav extends React.Component {
                         </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <button type="button" className="dropdown-item" data-toggle="modal" data-target="#LoginModal">Log In</button>
-                                    <a className="dropdown-item" href="./">Sign Up</a>
+                                    <button type="button" className="dropdown-item" data-toggle="modal" data-target="#SignUpModal">Sign Up</button>
                                     <div className="dropdown-divider"></div>
-                                    <a className="dropdown-item" href="./">Log Out</a>
+                                    <a className="dropdown-item" onClick={this.logOut}>Log Out</a>
                                 </div>
                             </li>
                         </ul>
@@ -95,6 +116,32 @@ class Nav extends React.Component {
                                         <input type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
                                     </div>
                                     <button type="submit" value="submit" onClick={this.submitForm} className="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="modal fade" id="SignUpModal" tabIndex="-1" role="dialog" aria-labelledby="SignUpModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="SignUpModalLabel">Sign Up</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <form action="/auth/login" method="post">
+                                    <div className="form-group">
+                                        <label htmlFor="signupemail">Email address</label>
+                                        <input type="email" name="username" className="form-control" id="signupemail" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.username} onChange={this.handleChange} />
+                                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="signuppassword">Password</label>
+                                        <input type="password" name="password" className="form-control" id="signuppassword" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
+                                    </div>
+                                    <button type="submit" value="submit" onClick={this.signUp} className="btn btn-primary">Submit</button>
                                 </form>
                             </div>
                         </div>
