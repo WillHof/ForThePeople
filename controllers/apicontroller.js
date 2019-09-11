@@ -57,7 +57,6 @@ module.exports = {
             .catch(err => res.status(503).json(err))
     },
     searchStatements: function (req, res) {
-        console.log(req.body.search)
         axios({
             method: 'get',
             url: `https://api.propublica.org/congress/v1/statements/committees/search.json?query=${req.body.search}`,
@@ -78,7 +77,6 @@ module.exports = {
             .catch(err => res.status(503).json(err))
     },
     GetPersonIntroducedBills: function (req, res) {
-        console.log(req.body.memberId + req.body.type)
         axios({
             method: 'get',
             url: `https://api.propublica.org/congress/v1/members/${req.body.memberId}/bills/${req.body.type}.json`,

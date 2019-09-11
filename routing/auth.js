@@ -3,11 +3,9 @@ const router = express.Router()
 const db = require('../models/')
 const passport = require('../passport')
 
-
-
 // this route is just used to get the user basic info
 router.get('/user', (req, res, next) => {
-
+    console.log(req)
     if (req.user) {
         return res.json({ user: req.user })
     } else {
@@ -17,9 +15,6 @@ router.get('/user', (req, res, next) => {
 
 router.post(
     '/login',
-    function (req, res, next) {
-        next()
-    },
     passport.authenticate('local'),
     (req, res) => {
         const user = JSON.parse(JSON.stringify(req.user)) // hack

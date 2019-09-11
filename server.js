@@ -11,6 +11,7 @@ const db = require("./models")
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routes);
+app.use(require('express-session')({ secret: 'meow', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/auth', require("./routing/auth"))
