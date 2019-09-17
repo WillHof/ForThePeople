@@ -77,7 +77,7 @@ module.exports = {
         //does record already exist
         db.userWatchList.findAll({
             where: {
-                userId: req.body.userId,
+                userinfoId: req.body.userId,
                 congId: req.body.congId
             }
         }).then(data => {
@@ -109,15 +109,36 @@ module.exports = {
 
     },
     getUsersMembers: function (req, res) {
-        db.userWatchList.findAll({
-            where: {
-                userId: req.body.userId
-            },
-            include: {
-                model: db.Senate_Members
-            }
-        }).then(data => res.json(data))
-            .catch(err => res.json(err))
+        console.log(req.body)
+        req.body.chamber === 'Senate' ? (
+            db.userWatchList.findAll({
+                where: {
+                    userinfoId: req.body.userId,
+                    chamber: req.body.chamber
+                },
+                include: {
+                    model: db.Senate_Members,
+                }
+            })
+                .then(data => res.json(data))
+                .catch(err => res.json(err))
+        ) : (
+                db.userWatchList.findAll({
+                    where: {
+                        userinfoId: req.body.userId,
+                        chamber: req.body.chamber
+                    },
+                    include: {
+                        model: db.House_Members,
+                    }
+                })
+                    .then(data =>
+                        res.json(data)
+                    )
+                    .catch(err => res.json(err))
+            )
+
+
 
     }
 }
