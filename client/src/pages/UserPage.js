@@ -36,7 +36,14 @@ export class UserPage extends Component {
                         congress: response.data,
                     })
                 }
-                else { this.setState({ congress: [] }) }
+                else {
+                    this.setState({
+                        congress: [{
+                            SenateMemberId: null,
+                            HouseMemberId: null
+                        }]
+                    })
+                }
             }
             ).catch(err => console.log(err))
         }
