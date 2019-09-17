@@ -18,7 +18,10 @@ class Nav extends React.Component {
         axios.post("/auth/signup", {
             username: this.state.username,
             password: this.state.password
-        }).then(response => console.log(response))
+        }).then(response => {
+            console.log(response)
+            this.setState({password:''})
+        })
             .catch(err => alert(err))
     }
     submitForm = (e) => {
@@ -28,6 +31,9 @@ class Nav extends React.Component {
             password: this.state.password
         }).then(response => {
             sessionStorage.setItem('id', response.data.user.id)
+            this.setState({
+                password:''
+            })
             alert("You have been logged in")
         })
             .catch(err => alert("Username or password incorrect"))
@@ -38,7 +44,11 @@ class Nav extends React.Component {
             user: sessionStorage.getItem('id')
         }).then(response => {
             sessionStorage.removeItem('id');
-            alert("You have been logged out")
+            this.setState({
+                username:'',
+                password:''
+            });
+            alert("You have been logged out");
         })
             .catch(err => console.log(err))
     }
@@ -54,7 +64,7 @@ class Nav extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
-                                <Link to="/" className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}>
+                                <Link to="/Home" className={window.location.pathname === "/Home" ? "nav-link active" : "nav-link"}>
                                     Home
                         </Link>
                             </li>

@@ -55,8 +55,6 @@ export class Bills extends Component {
     render() {
         const dataLength = this.state.bills.length
         return (
-
-
             <div className="container border">
                 <div className="row">
                     <div className="col-md-12">

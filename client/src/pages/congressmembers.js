@@ -38,6 +38,22 @@ export class CongressMembers extends Component {
             this.getSenateMembers()
         }
     }
+    saveToUser = (e) => {
+        e.preventDefault();
+        let userId = sessionStorage.getItem("id")
+        let congId = e.target.value
+        let chamber = this.state.chamber
+        if(userId){
+            e.target.innerHTML= "Added to Homepage!"
+            Axios.post("/api/saveToUser",{
+                userId,
+                congId,
+                chamber
+            }).then(res=>console.log(res))
+            .catch(err=>console.log(err))
+        }
+        else{alert("You are not logged in.")}
+    }
     //sets the state to the selected us state when they change the value list
     onStateChange = (state) => {
         this.setState({ usState: state })
@@ -124,6 +140,7 @@ export class CongressMembers extends Component {
                                                                 </a>
                                                             </li>
                                                         </ul>
+                                                        <button className="btn btn-success btn-sm" type="button" value={dude.id} onClick={this.saveToUser}>Save to homepage</button>
                                                     </div>
                                                 </div>
                                             </div>

@@ -28,5 +28,7 @@ router.route("/api/getHouseMembers")
     .get(database.getHouseMembers) //pulls representatives from db
 router.route("/api/getOne")
     .post(database.getOneMember)
+router.route("/api/saveToUser")
+    .post(database.watchCongressMember)
 module.exports = router
 

@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 // this route is just used to get the user basic info
 router.get('/user', (req, res, next) => {
-    console.log(req)
     if (req.user) {
         return res.json({ user: req.user })
     } else {
@@ -32,7 +31,10 @@ router.post('/logout', (req, res) => {
     if (req.user) {
         req.session.destroy()
         res.clearCookie('connect.sid') // clean up!
-        return res.json({ msg: 'logging you out' })
+        return res.json({ 
+            data:'',
+            msg: 'You have been logged out.' 
+        })
     } else {
         return res.json({ msg: 'no user to log out!' })
     }

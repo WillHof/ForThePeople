@@ -8,7 +8,7 @@ module.exports = {
     createHouse: function (req, res) {
         db.House_Members.bulkCreate(this.mapToDB(req))
     },
-    //handles api data
+    //handles congressmember api data
     mapToDB: function (arr) {
         let dbArr = []
         arr.map(person => dbArr.push({
@@ -72,5 +72,27 @@ module.exports = {
                 }
             }).then(data => res.json(data.map(element => element.dataValues)))
         }
+    },
+    watchCongressMember: function(req,res){
+        //does record already exist
+        db.userWatchList.findAll({
+            where:{
+                userId: req.body.userId,
+                congId:req.body.congId
+            }
+        }).then(data=>{
+            //if record doesn't exist create it
+            if(data.length===0){
+                db.userWatchList.create({
+                    userId:req.body.userId,
+                    congId:req.body.congId,
+                    chamber:req.body.chamber
+                }).then(success=>res.json(success))
+            }
+            else{
+                res.status(403)
+            }
+        }).catch(err=>res.status(503).json(err))
+        
     }
 }

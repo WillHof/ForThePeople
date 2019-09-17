@@ -8,6 +8,7 @@ import Person from "./pages/person"
 import Papers from "./pages/Papers.js"
 import Home from "./pages/Home"
 import axios from "axios";
+import UserPage from './pages/UserPage';
 class App extends Component {
   componentDidMount() {
     axios.get("/auth/user").then(response => console.log(response.data))
@@ -19,6 +20,7 @@ class App extends Component {
           <Nav />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/Home" component={UserPage} />
             <Route exact path="/Bills" component={Bills} />
             <Route exact path="/Papers" component={Papers} />
             <Route exact path="/Members" component={Members} />
