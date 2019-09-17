@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router()
 const db = require('../models/')
 const passport = require('../passport')
-
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 // this route is just used to get the user basic info
 router.get('/user', (req, res, next) => {
     console.log(req)
@@ -49,11 +50,16 @@ router.post('/signup', (req, res) => {
                 })
             }
             else {
-                db.userinfo.create({
-                    username,
-                    password
-                }).then(savedUser => res.json(savedUser))
-                    .catch(err => res.status(503).json(err))
+                bcrypt.genSalt(saltRounds,function(err,salt){
+                    bcrypt.hash(password,salt,function(err,hash){
+                        db.userinfo.create({
+                            username,
+                            'password':hash
+                        }).then(savedUser => res.json(savedUser))
+                        .catch(err => res.status(503).json(err))
+                    })
+                })
+               
             }
         })
 })
