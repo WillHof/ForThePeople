@@ -94,5 +94,14 @@ module.exports = {
             }
         }).catch(err=>res.status(503).json(err))
         
+    },
+    getUsersMembers: function(req,res){
+        db.userWatchList.findAll({
+            where:{
+                userId:req.body.userId
+            }
+        }).then(data=>res.json(data))
+        .catch(err=>res.json(err))
+       
     }
 }

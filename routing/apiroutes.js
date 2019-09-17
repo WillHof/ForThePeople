@@ -30,5 +30,7 @@ router.route("/api/getOne")
     .post(database.getOneMember)
 router.route("/api/saveToUser")
     .post(database.watchCongressMember)
+router.route("/api/getUserCong")
+    .post(database.getUsersMembers)
 module.exports = router
 
