@@ -55,7 +55,7 @@ export class Bills extends Component {
     render() {
         const dataLength = this.state.bills.length
         return (
-            <div className="container border">
+            <div className="container border round">
                 <div className="row">
                     <div className="col-md-12">
                         <h3 className="nameText heading-style">{this.state.chamber} Bills</h3>

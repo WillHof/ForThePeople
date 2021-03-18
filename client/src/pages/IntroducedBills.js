@@ -28,7 +28,7 @@ export class IntroducedBills extends Component {
     render() {
         return (
             <div>
-                <div className="container border">
+                <div className="container border round">
                     <div className="row">
                         <div className="col-md-12">
                             <h3 className="nameText heading-style">Bills {this.props.which} by {this.props.firstName} {this.props.lastName}</h3>

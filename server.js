@@ -14,7 +14,7 @@ app.use(routes);
 app.use(require('express-session')({ secret: 'meow', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/auth', require("./routing/auth"))
+app.use('/auth', require("./routing/auth"));
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }

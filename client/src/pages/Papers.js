@@ -24,7 +24,7 @@ export class Papers extends Component {
     }
     render() {
         return (
-            <div className="container border">
+            <div className="container border round">
                 <div className="row">
                     <div className="col-md-12">
                         <h3 className="nameText heading-style">Congressional Statements</h3>

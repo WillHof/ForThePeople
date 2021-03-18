@@ -71,10 +71,9 @@ export class CongressMembers extends Component {
 
         return (
             <div>
-                <div className="container">
+                <div className="container round">
                     <div className="row">
                         <div className="col-md-4">
-
                             <div className="row">
                                 <div className="col">
                                     <div className="btn-group btn-padding">
@@ -89,17 +88,13 @@ export class CongressMembers extends Component {
                                     <span>State:</span> <UsState currState={this.state.usState} onStateChange={this.onStateChange} />
                                 </div>
                             </div>
-
                         </div>
                         <div className="col-md-4">
                             <h3 className="section-title text-center vertical-align">{this.state.chamber}</h3>
                         </div>
                         <div className="col-md-4">
-
-
                         </div>
                     </div>
-
                     <div>
                         <div className="row">
                             {this.state.congress.map(dude => (
