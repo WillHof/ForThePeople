@@ -30,7 +30,12 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
-
+db.userWatchList.belongsTo(db.userinfo)
+db.userinfo.hasMany(db.userWatchList)
+db.userWatchList.belongsTo(db.Senate_Members)
+db.userWatchList.belongsTo(db.House_Members)
+db.House_Members.hasMany(db.userWatchList)
+db.Senate_Members.hasMany(db.userWatchList)
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

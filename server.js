@@ -19,7 +19,6 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
-
 function getCongressMembers() {
     axios({
         method: 'get',
@@ -46,7 +45,7 @@ db.sequelize.sync().then(function () {
         console.log("App listening at http://localhost:" + PORT)
 
         //run the below the first time the server starts
-        //getCongressMembers()
+        // getCongressMembers()
     });
 
 })

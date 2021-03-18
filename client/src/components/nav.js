@@ -20,7 +20,8 @@ class Nav extends React.Component {
             password: this.state.password
         }).then(response => {
             console.log(response)
-            this.setState({password:''})
+            this.setState({ password: '' })
+            sessionStorage.setItem('id', response.data.id)
         })
             .catch(err => alert(err))
     }
@@ -32,7 +33,7 @@ class Nav extends React.Component {
         }).then(response => {
             sessionStorage.setItem('id', response.data.user.id)
             this.setState({
-                password:''
+                password: ''
             })
             alert("You have been logged in")
         })
@@ -45,8 +46,8 @@ class Nav extends React.Component {
         }).then(response => {
             sessionStorage.removeItem('id');
             this.setState({
-                username:'',
-                password:''
+                username: '',
+                password: ''
             });
             alert("You have been logged out");
         })

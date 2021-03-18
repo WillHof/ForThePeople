@@ -43,16 +43,16 @@ export class CongressMembers extends Component {
         let userId = sessionStorage.getItem("id")
         let congId = e.target.value
         let chamber = this.state.chamber
-        if(userId){
-            e.target.innerHTML= "Added to Homepage!"
-            Axios.post("/api/saveToUser",{
+        if (userId) {
+            e.target.innerHTML = "Added to Homepage!"
+            Axios.post("/api/saveToUser", {
                 userId,
                 congId,
                 chamber
-            }).then(res=>console.log(res))
-            .catch(err=>console.log(err))
+            }).then(res => console.log(res))
+                .catch(err => console.log(err))
         }
-        else{alert("You are not logged in.")}
+        else { alert("You are not logged in.") }
     }
     //sets the state to the selected us state when they change the value list
     onStateChange = (state) => {

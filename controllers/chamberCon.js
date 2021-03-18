@@ -73,35 +73,72 @@ module.exports = {
             }).then(data => res.json(data.map(element => element.dataValues)))
         }
     },
-    watchCongressMember: function(req,res){
+    watchCongressMember: function (req, res) {
         //does record already exist
         db.userWatchList.findAll({
-            where:{
-                userId: req.body.userId,
-                congId:req.body.congId
+            where: {
+                userinfoId: req.body.userId,
+                congId: req.body.congId
             }
-        }).then(data=>{
+        }).then(data => {
             //if record doesn't exist create it
-            if(data.length===0){
-                db.userWatchList.create({
-                    userId:req.body.userId,
-                    congId:req.body.congId,
-                    chamber:req.body.chamber
-                }).then(success=>res.json(success))
+            if (data.length === 0) {
+                if (req.body.chamber === 'House') {
+                    db.userWatchList.create({
+                        userId: req.body.userId,
+                        congId: req.body.congId,
+                        chamber: req.body.chamber,
+                        HouseMemberId: req.body.congId,
+                        userinfoId: req.body.userId
+                    }).then(success => res.json(success))
+                }
+                if (req.body.chamber === 'Senate') {
+                    db.userWatchList.create({
+                        userId: req.body.userId,
+                        congId: req.body.congId,
+                        chamber: req.body.chamber,
+                        SenateMemberId: req.body.congId,
+                        userinfoId: req.body.userId
+                    }).then(success => res.json(success))
+                }
             }
-            else{
+            else {
                 res.status(403)
             }
-        }).catch(err=>res.status(503).json(err))
-        
+        }).catch(err => res.status(503).json(err))
+
     },
-    getUsersMembers: function(req,res){
-        db.userWatchList.findAll({
-            where:{
-                userId:req.body.userId
-            }
-        }).then(data=>res.json(data))
-        .catch(err=>res.json(err))
-       
+    getUsersMembers: function (req, res) {
+        console.log(req.body)
+        req.body.chamber === 'Senate' ? (
+            db.userWatchList.findAll({
+                where: {
+                    userinfoId: req.body.userId,
+                    chamber: req.body.chamber
+                },
+                include: {
+                    model: db.Senate_Members,
+                }
+            })
+                .then(data => res.json(data))
+                .catch(err => res.json(err))
+        ) : (
+                db.userWatchList.findAll({
+                    where: {
+                        userinfoId: req.body.userId,
+                        chamber: req.body.chamber
+                    },
+                    include: {
+                        model: db.House_Members,
+                    }
+                })
+                    .then(data =>
+                        res.json(data)
+                    )
+                    .catch(err => res.json(err))
+            )
+
+
+
     }
 }
